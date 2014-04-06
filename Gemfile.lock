@@ -108,6 +108,7 @@ GEM
     uglifier (2.3.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    yajl-ruby (1.2.0)
 
 PLATFORMS
   ruby
@@ -120,3 +121,4 @@ DEPENDENCIES
   mongoid!
   rails (= 4.0.0)
   uglifier
+  yajl-ruby

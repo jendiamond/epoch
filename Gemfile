@@ -7,14 +7,5 @@ gem 'activeresource'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'jbuilder'
-#gem 'bcrypt',
+gem "yajl-ruby"
 
-
-#group :dev, :test do
-#  gem 'rspec-rails'
-#  gem 'capybara'
-#  gem 'selenium-webdriver'
-#  gem 'database_cleaner'
-#  gem 'launchy'
-#  gem 'better_errors'
-#end

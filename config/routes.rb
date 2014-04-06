@@ -1,3 +1,3 @@
 Epoch::Application.routes.draw do
-  root "site#index"
+  root "fetch#index"
 end
