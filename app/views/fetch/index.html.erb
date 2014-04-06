@@ -1,3 +1,12 @@
+<%= render "layouts/header" %>
+
 <div id="main">
-Epoch Rails Test
+  <%= form_for @fetch, url: fetch_path, method: :post do |f| %>
+    <div class="form_content">
+      <%= f.text_field :archive_url, class: "form_field", placeholder: "Archive URL" %>
+      <%= f.button "Fetch!", class: "btn", id: "fetch-btn" %>
+    </div>
+  <% end %>
 </div>
+
+<%= render "layouts/footer" %>
