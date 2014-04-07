@@ -109,8 +109,12 @@ def fetch_data( urls )
       Yajl::Parser.parse(data) do | dat |
         #TODO: add testing and error handling
         begin
-          created_at  = dat['created_at']
-          event_type  = dat['type']
+          datetime   = dat['created_at']
+
+          # convert to seconds to overcome mongoid bug
+          # when trying to query time range
+          datesecs   = time_to_secs( datetime )
+          event_type = dat['type']
 
           # skip "GistEvent"
           # these seem to have a lot of nil values
@@ -139,15 +143,17 @@ def fetch_data( urls )
           # add needed data to data base
           # not sure why we need to models, so just add to report model
           Fetch.create(
-            date:    created_at,
-            count:   event_count,
-            name:    repo_name,
-            url:     repo_url,
-            report:  report
+            datetime:   datetime,
+            datesecs:   datesecs,
+            count:      event_count,
+            name:       repo_name,
+            url:        repo_url,
+            report:     report
           )
 
           if $dev_mode
-            puts "date: "        + created_at.to_s
+            puts "datetime: "    + created_at.to_s
+            puts "datesecs: "    + date_seconds
             puts "event_type: "  + event_type
             puts "repo_name: "   + repo_name
             puts "repo_url: "    + repo_url
@@ -179,13 +185,35 @@ def reports_list()
   Report.distinct(:event)
 end
 
-def report_get(event, date, hour)
-  puts "Get data for ", event, date, hour
+
+# report_get('PushEvent', "2014-01-01T00:00:00-08:00", "2014-01-01T01:00:00-08:00", 10 )
+def report_get(event, start_time, end_time, limit=0 )
+  puts "Get data for ", event, start_time, end_time
+
+  #TODO make sure event exists
 
   # get the report
   report = Report.where( event: event ).first
 
-  # get the "fetches" based on the date and time
+  #TODO - make sure start_time and end time are in correct convention
+  # do we need to account for the time based on the location requesting the report
+  # or based on the actual location event was created?
+  # convert time to seconds
+  start_time = time_to_secs( start_time )
+  end_time   = time_to_secs( end_time )
 
+  # get the "fetches" based on the date and time
+  report.fetches
+    .desc(:count)
+    .where(:datesecs.gte=>start_time, :datesecs.lt=>end_time)
+    .limit(limit)
+    .list
 end
 
+def time_to_secs( date )
+  Time.parse( date ).strftime('%s').to_i
+end
+
+def pretty_time( seconds )
+  Time.at( seconds )
+end
