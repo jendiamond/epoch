@@ -23,7 +23,7 @@ class FetchController < ApplicationController
     # is less chance of errors
     archive_url = params[:fetch][:archive_url]
 
-    # hard code based on expect conventions
+    # hard code based on expected conventions
     domain = archive_url[0..29]
     format = archive_url[-8..-1]
 
@@ -38,7 +38,8 @@ class FetchController < ApplicationController
         # First, get a list of urls
         # for each hour of the specified day
         urls = []
-        (0..23).each do | hr |
+        #TODO: temp set to one hour for testing, change back to 23 when done
+        (0..1).each do | hr |
           new_url = domain + date + "-" + hr.to_s + format
           urls.append( new_url )
         end
@@ -46,8 +47,7 @@ class FetchController < ApplicationController
         # record data
         # this could take a while since one full day
         # can have thousands of entries
-        puts "Got urls: "
-        puts urls
+        puts "Got urls: ", urls
         record_data( urls )
 
       else
@@ -99,17 +99,25 @@ class FetchController < ApplicationController
             event_count = dat['payload']['size']
           end
 
+
+          # get the corresponding report based on the event type
+          # TODO: optimize this so it's not doing a look up for each fetch
+          # maybe create a hash for quick look up???
+          report = Report.where(event: event_type).first
+
+          # TODO: add error checking to make sure I got a report
+
           # add needed data to data base
           # not sure why we need to models, so just add to report model
-          Report.create(
-              created_at: created_at,
-              type:       event_type,
-              count:      event_count,
-              name:       repo_name,
-              url:        repo_url
+          Fetch.create(
+            date:    created_at,
+            count:   event_count,
+            name:    repo_name,
+            url:     repo_url,
+            report:  report
           )
 
-          puts "created_at: "  + created_at.to_s
+          puts "date: "        + created_at.to_s
           puts "event_type: "  + event_type
           puts "repo_name: "   + repo_name
           puts "repo_url: "    + repo_url
@@ -120,6 +128,7 @@ class FetchController < ApplicationController
         rescue
           # caught error with dat...
           # go to the next data set
+          # temp capture in variable for testing
           skipped_urls.append(dat)
           next
         end
@@ -132,6 +141,5 @@ class FetchController < ApplicationController
       puts skipped_urls
     end
   end
-
 
 end
