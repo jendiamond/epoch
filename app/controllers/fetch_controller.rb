@@ -78,8 +78,6 @@ class FetchController < ApplicationController
       Yajl::Parser.parse(data) do | dat |
         #TODO: add testing and error handling
         begin
-          item_count += 1
-
           created_at  = dat['created_at']
           event_type  = dat['type']
 
@@ -118,6 +116,7 @@ class FetchController < ApplicationController
           puts "event_count: " + event_count.to_s
           puts "\n\n"
 
+          item_count += 1
         rescue
           # caught error with dat...
           # go to the next data set
