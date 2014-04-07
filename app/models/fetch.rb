@@ -1,6 +1,5 @@
 class Fetch < ModelBase
   include Mongoid::Document
-  include Mongoid::Timestamps
 
   attr_accessor :archive_url
 
