@@ -27,5 +27,5 @@ events = [
 ]
 
 events.each do | event |
-  Report.create( type: event )
+  Report.create( event: event )
 end
