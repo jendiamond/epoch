@@ -23,6 +23,7 @@ p {
 a {
   text-decoration: none;
   color: #bfbfbf;
+  cursor: pointer;
 }
 a:hover {
   text-decoration: none;
@@ -30,21 +31,6 @@ a:hover {
 }
 ul {
   list-style: none;
-}
-
-.clearfix {
-  *zoom: 1;
-}
-
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  line-height: 0;
-  content: "";
-}
-
-.clearfix:after {
-  clear: both;
 }
 
 /* ------ For flash messages ------ */
@@ -68,7 +54,7 @@ ul {
   background-color: rgba(0,0,0, .8);
 }
 
-.btn {
+.bttn {
   font-size: 20px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100px;
@@ -77,7 +63,7 @@ ul {
   border: solid 1px #d20000;
   background-color: #d20000;
 }
-.btn:hover {
+.bttn:hover {
   background-color: #dd0000;
  }
 
@@ -86,14 +72,18 @@ body {
   color: #bfbfbf;
 }
 
+/*#main {*/
+  /*margin: 5em auto;*/
+/*}*/
+
 header {
-  background: rgba(255,255,255, .95);
+  background: rgba(255,255,255, .75);
   width: 100%;
-  margin-bottom: 2em;
+  /*margin-bottom: 2em;*/
   box-shadow: 0 0 20px #b1b1b1;
   -webkit-box-shadow: 0 0 20px #b1b1b1;
   -moz-box-shadow: 0 0 20px #b1b1b1;
-  position: relative;
+  position: fixed;
   top: 20px;
 }
 
@@ -119,7 +109,6 @@ nav li {
   display: inline-block;
   float: right;
   margin: 25px 35px 0 0;
-  cursor: pointer;
   border-bottom: solid 4px #ffffff;
 }
 
@@ -127,20 +116,17 @@ nav li:hover, .active {
   border-bottom: solid 4px #d20000;
 }
 
-
-
-#main {
-  margin: 0 auto;
-}
-
 .form_content {
   border-radius: 5px;
-  width: 512px;
-  margin: 100px auto;
+  width: 200px;
+  margin: 150px auto;
   padding: 30px;
   box-shadow: 0 0 20px #b1b1b1;
   -webkit-box-shadow: 0 0 20px #b1b1b1;
   -moz-box-shadow: 0 0 20px #b1b1b1;
+  overflow: auto;
+  height: 100%;
+
 }
 
 .form_title {
@@ -157,14 +143,9 @@ nav li:hover, .active {
   margin: 8px 0;
 }
 
-#fetch-btn {
-  width: 125px;
-  margin: 0 0 0 390px
-}
-
 
 footer {
-  background: rgba(255,255,255, .95);
+  background: rgba(255,255,255, .75);
   width: 100%;
   position: fixed;
   bottom: 0;
@@ -177,4 +158,86 @@ footer {
   text-align: right;
   margin: 15px 30px;
 }
+
+
+/*Fetch Page*/
+
+.fetch_content {
+  width: 512px;
+  margin: 100px auto;
+}
+
+#fetch-btn {
+  width: 125px;
+  margin: 0 0 0 390px;
+}
+
+
+
+/*Graphs Page*/
+
+
+
+
+/*Links Page*/
+
+.form_title {
+  font-size: 2em;
+  font-weight: bold;
+  color: #d20000;
+}
+
+.links_table_title {
+  color: #d20000;
+}
+
+.links_content {
+  width: 60%;
+  color: #8a8a8a;
+}
+
+.links_content a {
+  color: #8a8a8a;
+}
+
+.links_content a:hover {
+  color: #d20000;
+}
+
+.table {
+  margin: 10px 0 0 0;
+}
+
+
+
+/* to make table header fixed
+ with scrollable content*/
+
+table {
+  width: 100%;
+}
+
+thead, tbody, tr, td, th { display: block; }
+
+tr:after {
+  content: ' ';
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+
+thead th {
+  height: 25px;
+}
+
+tbody {
+  height: 600px;
+  overflow-y: auto;
+}
+
+tbody td, thead th {
+  width: 19.2%;
+  float: left;
+}
+
 

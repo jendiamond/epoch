@@ -1,9 +1,9 @@
 <div id="main" class="clearfix">
   <%= form_for @fetch, url: fetch_path, method: :post do |f| %>
-    <div class="form_content clearfix">
+    <div class="form_content fetch_content clearfix">
       <div class="form_title">Fetch Git Archive Data</div>
       <%= f.text_field :archive_url, class: "form_field", placeholder: 'http://data.githubarchive.org/2014-01-01-0.json.gz' %>
-      <%= f.button "Fetch!", class: "btn", id: "fetch-btn" %>
+      <%= f.button "Fetch!", class: "bttn", id: "fetch-btn" %>
     </div>
   <% end %>
 </div>
