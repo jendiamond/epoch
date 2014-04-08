@@ -2,8 +2,18 @@ require 'open-uri'
 require 'zlib'
 require 'yajl'
 
-# check if in dev mode
+# check if in dev mode - for verbosity
 Rails.env === 'development' ? $dev_mode = true : $dev_mode = false
+
+
+def time_to_secs( date )
+  Time.parse( date.to_s ).strftime('%s').to_i
+end
+
+def pretty_time( seconds )
+  Time.at( seconds )
+end
+
 
 def db_destroy()
   Fetch.destroy_all
@@ -50,7 +60,8 @@ def reports_create()
   end
 end
 
-def urls_by_hour_resolve( url, range=(0..23) )
+# url = 'http://data.githubarchive.org/2014-01-01-0.json.gz'
+def urls_by_hour_resolve( url='http://data.githubarchive.org/2014-01-01-0.json.gz', range=(0..23) )
   # This url has to be in a specific format to work corectly with open_uri
   # tokenize it to get the date only then rebuild url and loop with a range
   # to get all the times.
@@ -87,7 +98,6 @@ def urls_by_hour_resolve( url, range=(0..23) )
   urls
 end
 
-# url = 'http://data.githubarchive.org/2014-01-01-0.json.gz'
 def fetch_data( urls )
   if urls.length
     # TODO: I'll need a way to keep track of which days have been entered
@@ -171,8 +181,9 @@ def fetch_data( urls )
       end
     end
 
+    puts "\nCreated [" + item_count.to_s + "] archive entries"
+
     if $dev_mode
-      puts "\nCreated [" + item_count.to_s + "] archive entries"
       if skipped_urls.length > 0
         puts "Caught error for hte following urls: "
         puts skipped_urls
@@ -228,19 +239,12 @@ def report_get( event, date, start_hr, end_hr, limit=0 )
 
 end
 
-def time_to_secs( date )
-  Time.parse( date.to_s ).strftime('%s').to_i
-end
 
-def pretty_time( seconds )
-  Time.at( seconds )
-end
+#################################################
+# Custom utility for report views - with defaults
 
-
-########################################
-# Custom utility for report views
-# filter as needed
-
+# to get top 10 repos for entire day of 2014-01-01
+# report_top_repos()
 def report_top_repos( top=10, start_hr=0, end_hr=23, date='2014-01-01', event='PushEvent' )
   # get data
   data = report_get( event, date, start_hr, end_hr, top )
@@ -257,5 +261,4 @@ def report_top_repos( top=10, start_hr=0, end_hr=23, date='2014-01-01', event='P
 
   # return items
   items
-
 end
