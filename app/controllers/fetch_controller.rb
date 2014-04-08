@@ -7,7 +7,7 @@ class FetchController < ApplicationController
 
   def create
     #temp range for testing
-    range = (0..1)
+    range = (0..23)
     archive_url = params[:fetch][:archive_url]
 
     puts "\n\narchive_url='"+archive_url+"'"
