@@ -186,34 +186,76 @@ def reports_list()
 end
 
 
-# report_get('PushEvent', "2014-01-01T00:00:00-08:00", "2014-01-01T01:00:00-08:00", 10 )
-def report_get(event, start_time, end_time, limit=0 )
-  puts "Get data for ", event, start_time, end_time
+# report_get('PushEvent', "2014-01-01", 0, 3, 10 )
+def report_get( event, date, start_hr, end_hr, limit=0 )
+  # make sure event exists
+  if reports_list.include? event
+    #TODO - make sure start_time and end time are in correct convention
+    # do we need to account for the time based on the location requesting the report
+    # or based on the actual location event was created?
 
-  #TODO make sure event exists
+    # convert date and time to correct convention
+    # yyy-mm-ddThh:mm:00
 
-  # get the report
-  report = Report.where( event: event ).first
+    # make sure I've got a clean integer
+    start_hr = start_hr.to_i
+    end_hr = end_hr.to_i
 
-  #TODO - make sure start_time and end time are in correct convention
-  # do we need to account for the time based on the location requesting the report
-  # or based on the actual location event was created?
-  # convert time to seconds
-  start_time = time_to_secs( start_time )
-  end_time   = time_to_secs( end_time )
+    end_hr = 23 if end_hr > 23
+    start_hr = 0 if start_hr < 0
 
-  # get the "fetches" based on the date and time
-  report.fetches
-    .desc(:count)
-    .where(:datesecs.gte=>start_time, :datesecs.lt=>end_time)
-    .limit(limit)
-    .list
+
+    (start_hr < 10) ? start_hr = "0" + start_hr.to_s : start_hr = start_hr.to_s
+    (end_hr < 10)   ? end_hr = '0' + end_hr.to_s     : end_hr = end_hr.to_s
+
+    start_time = date.to_s+"T"+start_hr.to_s+":00:00-8:00"
+    end_time   = date.to_s+"T"+end_hr.to_s+":00:00-8:00"
+
+    if $dev_mode
+      puts start_time, end_time
+    end
+
+    # convert to seconds
+    start_time = time_to_secs( start_time )
+    end_time   = time_to_secs( end_time )
+
+    # get the report
+    report = Report.where( event: event ).first
+
+    # get the "fetches" based on the date and time
+    report.fetches.desc(:count).where(:datesecs.gte=>start_time,:datesecs.lt=>end_time).limit(limit).list
+  end
+
 end
 
 def time_to_secs( date )
-  Time.parse( date ).strftime('%s').to_i
+  Time.parse( date.to_s ).strftime('%s').to_i
 end
 
 def pretty_time( seconds )
   Time.at( seconds )
+end
+
+
+########################################
+# Custom utility for report views
+# filter as needed
+
+def report_top_repos( top=10, start_hr=0, end_hr=23, date='2014-01-01', event='PushEvent' )
+  # get data
+  data = report_get( event, date, start_hr, end_hr, top )
+
+  # create hash to pass to controller/view
+  items = []
+  data.each do | dat |
+    items << Hash[
+        :url,   dat.url,
+        :name,  dat.name,
+        :count, dat.count
+    ]
+  end
+
+  # return items
+  items
+
 end
