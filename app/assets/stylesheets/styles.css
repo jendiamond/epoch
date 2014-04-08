@@ -1,0 +1,40 @@
+/*limited reset*/
+html, body, div, section, article, aside, header,
+hgroup, footer, nav, h1, h2, h3, h4, h5, h6, p,
+blockquote, address, time, span, em, strong, img,
+ol, ul, li, figure, canvas, video, th, td, tr {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align:baseline;
+}
+h1 {
+  font-size: 1.5em;
+  line-height: 1.5;
+}
+h2 {
+  font-size: 1.3em;
+}
+h4 {
+  font-size: 1.1em;
+}
+p {
+  font-size: 18px;
+  line-height: 1.2;
+}
+a {
+  text-decoration: none;
+  /*color: grey;*/
+}
+a:hover {
+  text-decoration: none;
+  /*color: #B4B4B4;*/
+}
+ul {
+  list-style: none;
+}
+
+/*nav {*/
+  /*float: right;*/
+  /*margin: 45px 0 0;*/
+/*}*/
