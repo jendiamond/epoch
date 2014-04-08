@@ -245,6 +245,9 @@ end
 
 # to get top 10 repos for entire day of 2014-01-01
 # report_top_repos()
+
+# to get top 25 repos between 11am and 1pm (military time) for 2014-01-01
+# report_top_repos(25,11,13)
 def report_top_repos( top=10, start_hr=0, end_hr=23, date='2014-01-01', event='PushEvent' )
   # get data
   data = report_get( event, date, start_hr, end_hr, top )
