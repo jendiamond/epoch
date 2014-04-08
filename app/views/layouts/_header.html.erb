@@ -1,3 +1,14 @@
-<header>
-  Epoch Test - Github Archive
+<header  class='clearfix'>
+  <h1 id='title'><%= link_to 'GitHub Archive Reports', root_path %></h1>
+
+  <nav>
+    <ul id='menu' class='clearfix'>
+      <li class='menu'>
+        <%= link_to 'Report top 10', reports_path, class: 'menu_item' %>
+      </li>
+      <li class='menu'>
+        <%= link_to 'Report top 25', links_path, class: 'menu_item' %>
+      </li>
+    </ul>
+  </nav>
 </header>
