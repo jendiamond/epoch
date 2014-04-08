@@ -1,4 +1,4 @@
-/*limited reset*/
+limited reset
 html, body, div, section, article, aside, header,
 hgroup, footer, nav, h1, h2, h3, h4, h5, h6, p,
 blockquote, address, time, span, em, strong, img,
@@ -10,7 +10,6 @@ ol, ul, li, figure, canvas, video, th, td, tr {
 }
 h1 {
   font-size: 1.5em;
-  line-height: 1.5;
 }
 h2 {
   font-size: 1.3em;
@@ -19,22 +18,114 @@ h4 {
   font-size: 1.1em;
 }
 p {
-  font-size: 18px;
-  line-height: 1.2;
+  font-size: 16px;
 }
 a {
   text-decoration: none;
-  /*color: grey;*/
+  color: #bfbfbf;
 }
 a:hover {
   text-decoration: none;
-  /*color: #B4B4B4;*/
+  color: #8a8a8a;
 }
 ul {
   list-style: none;
 }
 
-/*nav {*/
-  /*float: right;*/
-  /*margin: 45px 0 0;*/
-/*}*/
+.clearfix {
+  *zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+/* ------ For flash messages ------ */
+.message {
+  font-family: "Open Sans", sans-serif;
+  font-size: 25px;
+  text-align: center;
+  color: white;
+  width: 400px;
+  position: relative;
+  top: 35px;
+  z-index: 50;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 10px;
+}
+.notice,
+.error,
+.debug,
+.alert {
+  background-color: rgba(0,0,0, .8);
+}
+
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #bfbfbf;
+}
+
+header {
+  background: rgba(255,255,255, .95);
+  width: 100%;
+  margin-bottom: 1.875em;
+  -webkit-box-shadow: 0 6px 8px rgba(200,200,200,0.32);
+  -moz-box-shadow: 0 6px 8px rgba(200,200,200,0.32);
+  box-shadow: 0 6px 8px rgba(200,200,200,0.32);
+}
+
+#title{
+  font-size: 2em;
+  font-weight: bold;
+  float: left;
+  margin: 15px 30px;
+}
+
+#title a {
+  color: #8a8a8a;
+}
+
+#title a:hover {
+  color: #a1a1a1;
+}
+
+nav li {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 1.2em;
+  letter-spacing: 1px;
+  color: #a4a1a1;
+  display: inline-block;
+  float: right;
+  margin: 25px 30px 0 0;
+  cursor: pointer;
+  border-bottom: solid 4px #ffffff;
+}
+
+nav li:hover, .active {
+  border-bottom: solid 4px #d20000;
+}
+
+footer {
+  background: rgba(255,255,255, .95);
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+}
+
+.copyright {
+  font-size: .9em;
+  color: #a0a0a0;
+  text-align: right;
+  margin: 15px 30px;
+}
+

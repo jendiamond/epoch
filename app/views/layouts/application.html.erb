@@ -3,16 +3,26 @@
 <head>
   <title>Epoch Rails Test</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render "layouts/header" %>
+  <%= yield %>
+  <%= render "layouts/footer" %>
 
-<%= render "layouts/header" %>
+  <% if flash[:error] %>
+    <a href="#" onclick="message_clear()"><div class="message error"><%= flash[:error] %></div><a>
+  <% end %>
 
-<%= yield %>
+  <% if flash[:notice] %>
+    <a href="#" onclick="message_clear()"><div class="message notice"><%= flash[:notice] %></div><a>
+  <% end %>
 
-<%= render "layouts/footer" %>
+  <% if flash[:alert] %>
+    <a href="#" onclick="message_clear()"><div class="message notice"><%= flash[:alert] %></div><a>
+  <% end %>
+
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 
 </body>
 </html>
