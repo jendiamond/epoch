@@ -7,18 +7,20 @@ $(document).ready(function() {
 
 function time_check() {
   // Check that the start time is before the end time
+  var event = $("#event_menu option:selected").text();
   var date  = $("#date_menu option:selected").text();
   var start = Math.floor( $("#start_menu").val() );
   var end   = Math.floor( $("#end_menu").val() );
 
+  console.log ( "event: ["+event+"] ")
+
   var values = [];
   if( start < end ) {
-    values = [date, start, end];
+    values = [event, date, start, end];
   } else {
     var msg = "'Start Time' must be less then 'End Time'.\n";
     msg += "Please select correct times to continue.";
     alert( msg );
-
     console.log("start ", start, "end ", end);
   }
 
@@ -40,9 +42,10 @@ function links_update() {
   var values = time_check();
   if ( values.length > 0 ) {
     var data = {};
-    data['date'] = values[0];
-    data['start_time'] = values[1];
-    data['end_time'] = values[2];
+    data['event'] = values[0];
+    data['date'] = values[1];
+    data['start_time'] = values[2];
+    data['end_time'] = values[3];
 
     $.ajax({
       type        : "GET",

@@ -1,38 +1,26 @@
 class ReportsController < ApplicationController
 
-  # def new
-  # end
-
   def index
     @report = Report.new
 
-    # subtract on from hrs - showing 12pm and 1pm
+    # subtract one from hrs - showing 12pm and 1pm
     @data = report_top_repos(10,11,12)
-    @hours = hours_list
+
+    @events = events_list
+    @dates  = dates_list
+    @hours  = hours_list
   end
 
-  # def show
-  # end
+  # def create
+  #   # there should be a better way to do this
+  #   # so I don't have to rebuild the entire page
   #
-  # def edit
-  # end
-
-  def create
-    # there should be a better way to do this
-    # so I don't have to rebuild the entire page
-
-    puts "\n\nGot Params", params
-
-    # get date and hours, shift hours by 1
-
-    @data = report_top_repos(10,1,0)
-    redirect_to links_path
-  end
-
-  # def update
-  # end
+  #   puts "\n\nGot Params", params
   #
-  # def destroy
+  #   # get date and hours, shift hours by 1
+  #
+  #   @data = report_top_repos(10,1,0)
+  #   redirect_to links_path
   # end
 
 end

@@ -192,15 +192,20 @@ def fetch_data( urls )
   end
 end
 
-def reports_list()
+def events_list()
   Report.distinct(:event)
 end
 
+def dates_list()
+  # we should have a way to quickly query available dates
+  # only doing one for now, so just default to that
+  ['2014-01-01']
+end
 
 # report_get('PushEvent', "2014-01-01", 0, 3, 10 )
 def report_get( event, date, start_hr, end_hr, limit=0 )
   # make sure event exists
-  if reports_list.include? event
+  if events_list.include? event
     #TODO - make sure start_time and end time are in correct convention
     # do we need to account for the time based on the location requesting the report
     # or based on the actual location event was created?
@@ -275,59 +280,3 @@ def hours_list()
   ]
 end
 
-def hour_to_int( hour )
-  val = 0
-  case hour
-    when '1:00 am'
-      val = 1
-    when '2:00 am'
-      val = 2
-    when '3:00 am'
-      val = 3
-    when '4:00 am'
-      val = 4
-    when '5:00 am'
-      val = 5
-    when '6:00 am'
-      val = 6
-    when '7:00 am'
-      val = 7
-    when '8:00 am'
-      val = 8
-    when '9:00 am'
-      val = 9
-    when '10:00 am'
-      val = 10
-    when '11:00 am'
-      val = 11
-    when '12:00 pm'
-      val = 12
-    when '1:00 pm'
-      val = 13
-    when '2:00 pm'
-      val = 14
-    when '3:00 pm'
-      val = 15
-    when '4:00 pm'
-      val = 16
-    when '5:00 pm'
-      val = 17
-    when '6:00 pm'
-      val = 18
-    when '7:00 pm'
-      val = 19
-    when '8:00 pm'
-      val = 20
-    when '9:00 pm'
-      val = 21
-    when '10:00 pm'
-      val = 22
-    when '11:00 pm'
-      val = 23
-    when '12:00am'
-      val = 24
-    else
-      val
-  end
-  val
-end

@@ -74,7 +74,7 @@ body {
 
 
 header {
-  background: rgba(255,255,255, .75);
+  background: rgba(255,255,255, .90);
   width: 100%;
   box-shadow: 0 0 20px #b1b1b1;
   -webkit-box-shadow: 0 0 20px #b1b1b1;
@@ -141,11 +141,12 @@ nav li:hover, .active {
 
 
 footer {
-  background: rgba(255,255,255, .75);
+  background: rgba(255,255,255, .90);
   width: 100%;
   position: fixed;
   bottom: 0;
   z-index: 10;
+  padding-top: 20px;
 }
 
 .copyright {
@@ -257,7 +258,7 @@ table {
 }
 
 .div-table-content {
-  height:450px;
+  height: 600px;
   overflow-y:auto;
 }
 
