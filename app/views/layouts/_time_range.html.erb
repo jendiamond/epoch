@@ -1,30 +1,40 @@
+<!--don't include the button - so I can listen for specific events-->
+
 <div class="timerange_grp">
-  <label for="date">Date</label>
-  <select name="date_menu" id="date">
+  <label for="date_menu">Date</label>
+  <select name="date_menu" id="date_menu">
     <option value="0" selected="1">2014-01-01</option>
     <option value="1">2014-01-01</option>
   </select>
 </div>
 
 <div class="timerange_grp">
-  <label for="start">Start Time</label>
-  <select name="start_menu" id="start">
-    <option value="0">12:00 pm</option>
-    <% count = 0 %>
+  <label for="start_menu">Start Time</label>
+  <select name="start_menu" id="start_menu">
+    <% default = '12:00 pm' %>
+    <% count = 1 %>
     <% @hours.each do | h | %>
-      <option value="<% count %>"><%= h %></option>
+      <% if h === default %>
+        <option value="<%= count %>" selected="1" > <%= h %> </option>
+      <% else %>
+        <option value="<%= count %>"> <%= h %> </option>
+      <% end %>
       <% count += 1 %>
     <% end %>
   </select>
 </div>
 
 <div class="timerange_grp">
-  <label for="end">End Time</label>
-  <select name="end_menu" id="end">
-    <option value="0">1:00 pm</option>
+  <label for="end_menu">End Time</label>
+  <select name="end_menu" id="end_menu">
+    <% default = '1:00 pm' %>
     <% count = 1 %>
     <% @hours.each do | h | %>
-      <option value='<% count %>'><%= h %></option>
+      <% if h === default %>
+        <option value="<%= count %>" selected="1" > <%= h %> </option>
+      <% else %>
+        <option value="<%= count %>"> <%= h %> </option>
+      <% end %>
       <% count += 1 %>
     <% end %>
   </select>

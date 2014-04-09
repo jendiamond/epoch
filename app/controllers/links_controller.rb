@@ -1,8 +1,5 @@
 class LinksController < ApplicationController
 
-  # def new
-  # end
-
   def index
     @report = Report.new
 
@@ -11,28 +8,24 @@ class LinksController < ApplicationController
     @hours = hours_list
    end
 
-  # def show
-  # end
-  #
-  # def edit
-  # end
-
-  def create
-    # there should be a better way to do this
-    # so I don't have to rebuild the entire page
-
-    puts "\n\nGot Params", params
-
+  def refresh
     # get date and hours, shift hours by 1
 
-    @data = report_top_repos(25,1,0)
-    redirect_to links_path
-  end
+    puts "\n\nGOT PARAMS#{params.to_s}\n\n"
 
-  # def update
-  # end
-  #
-  # def destroy
-  # end
+    # shift time by one by one to account of 0 index of archive data
+    date       = params[:date]
+    start_time = params[:start_time].to_i - 1
+    end_time   = params[:end_time].to_i - 1
+    event      = 'PushEvent'
+    @data = report_top_repos( 25, start_time, end_time, date, event )
+
+    puts "Getting report for: ", start_time, end_time, date, event
+
+
+
+    # For AJAX request
+    render json: @data
+  end
 
 end

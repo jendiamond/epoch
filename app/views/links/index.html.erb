@@ -29,13 +29,12 @@
       <tbody>
         <% count = 1 %>
         <% @data.each do | dat | %>
-          <tr>
-            <td class="span1"><%= count %></td>
-            <td class="span2"><%= dat[:count] %></td>
-            <td class="span3"><%= dat[:name] %></td>
-
+          <tr id="row_<%= count %>" >
+            <td class="span1" id="r<%= count %>c1"><%= count %></td>
+            <td class="span2" id="r<%= count %>c2"><%= dat[:count] %></td>
+            <td class="span3" id="r<%= count %>c3"><%= dat[:name] %></td>
             <% url = dat[:url] %>
-            <td class="span4">
+            <td class="span4" id="r<%= count %>c4">
               <%= link_to url, url_for(url), target: '_blank' %>
             </td>
           </tr>
