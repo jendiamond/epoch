@@ -55,7 +55,7 @@ ul {
 }
 
 .bttn {
-  font-size: 20px;
+  font-size: 18px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100px;
   border-radius: 2px;
@@ -72,14 +72,10 @@ body {
   color: #bfbfbf;
 }
 
-/*#main {*/
-  /*margin: 5em auto;*/
-/*}*/
 
 header {
   background: rgba(255,255,255, .75);
   width: 100%;
-  /*margin-bottom: 2em;*/
   box-shadow: 0 0 20px #b1b1b1;
   -webkit-box-shadow: 0 0 20px #b1b1b1;
   -moz-box-shadow: 0 0 20px #b1b1b1;
@@ -160,11 +156,38 @@ footer {
 }
 
 
-/*Fetch Page*/
+
+
+/* ------ Time Range Widget ------ */
+
+#timerange {
+  margin: 25px auto 15px;
+}
+
+#timerange label {
+  line-height: 12px;
+}
+
+#timerange select {
+  width: 120px;
+  height: 25px;
+  font-size: 14px;
+}
+
+.timerange_grp {
+  float: left;
+  margin-right: 12px;
+}
+
+
+
+
+/* ------ Fetch Page ------ */
 
 .fetch_content {
-  width: 512px;
-  margin: 100px auto;
+  width: 500px;
+  color: #8a8a8a;
+  padding: 45px;
 }
 
 #fetch-btn {
@@ -174,26 +197,34 @@ footer {
 
 
 
-/*Graphs Page*/
+/* ------ Graphs ------ */
 
-
-
-
-/*Links Page*/
-
-.form_title {
-  font-size: 2em;
-  font-weight: bold;
-  color: #d20000;
+.graph_content {
+  width: 75%;
+  color: #8a8a8a;
+  padding: 45px;
 }
 
-.links_table_title {
-  color: #d20000;
+#graph-btn {
+  font-size: 16px;
+  width: 100px;
+  margin-top: 16px;
 }
+
+#graph {
+  width: 20%;
+  height: 300px;
+  background-color: #d20000;
+}
+
+
+
+/* ------ Links Page ------ */
 
 .links_content {
-  width: 60%;
+  width: 75%;
   color: #8a8a8a;
+  padding: 45px;
 }
 
 .links_content a {
@@ -202,42 +233,32 @@ footer {
 
 .links_content a:hover {
   color: #d20000;
+  font-weight: bold;
 }
 
-.table {
-  margin: 10px 0 0 0;
+.links_table_title {
+  color: #d20000;
 }
 
-
+#links-btn {
+  font-size: 16px;
+  width: 100px;
+  margin-top: 16px;
+}
 
 /* to make table header fixed
  with scrollable content*/
+.table_fixed {
+  margin-bottom: 0;
+}
 
 table {
-  width: 100%;
+  table-layout:fixed;
 }
 
-thead, tbody, tr, td, th { display: block; }
-
-tr:after {
-  content: ' ';
-  display: block;
-  visibility: hidden;
-  clear: both;
-}
-
-thead th {
-  height: 25px;
-}
-
-tbody {
-  height: 600px;
-  overflow-y: auto;
-}
-
-tbody td, thead th {
-  width: 19.2%;
-  float: left;
+.div-table-content {
+  height:450px;
+  overflow-y:auto;
 }
 
 

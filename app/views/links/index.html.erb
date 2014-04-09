@@ -1,250 +1,48 @@
-<div>
-  <div class="form_content links_content">
-    <div class="form_title">Top 25 Repositories</div>
+<div class="form_content links_content">
+  <div class="form_title">Top 25 Repositories</div>
 
-    <%= render "layouts/time_range" %>
+  <%#= form_for @report, url: links_path, method: :post do |f| %>
+  <form id="links_form">
+    <div id="timerange" class="clearfix" >
+      <%= render "layouts/time_range" %>
+      <button type="submit" class="bttn" id="links-btn">Update</button>
+    </div>
+    <%#= f.button "Update!", class: "bttn", id: "timerange-btn" %>
+    <%# end %>
+  </form>
 
-    <table class="table table-hover">
+  <div class="panel panel-default">
+    <table class="table table_fixed" >
       <thead class="links_table_title">
       <tr>
-        <th>Rank</th>
-        <th>Count</th>
-        <th>Name</th>
-        <th>URL</th>
+        <th class="span1">Rank</th>
+        <th class="span2">Count</th>
+        <th class="span3">Name</th>
+        <th class="span4">URL</th>
       </tr>
       </thead>
+    </table>
+  </div>
+
+  <div class="div-table-content">
+    <table class="table table-hover">
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>874</td>
-          <td>epoch</td>
-          <td><%= link_to 'https://github.com/ceospfx/epoch',
-                  url_for('https://github.com/ceospfx/epoch'),
-                  target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>604</td>
-          <td>gitHub Archive</td>
-          <td><%= link_to 'http://www.githubarchive.org/',
-                  url_for('http://www.githubarchive.org'),
-                  target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>502</td>
-          <td>gitHub Archive</td>
-          <td><%= link_to 'http://www.githubarchive.org/',
-                  url_for('http://www.githubarchive.org'),
-                  target: '_blank' %>
-          </td>
-        </tr>
+        <% count = 1 %>
+        <% @data.each do | dat | %>
+          <tr>
+            <td class="span1"><%= count %></td>
+            <td class="span2"><%= dat[:count] %></td>
+            <td class="span3"><%= dat[:name] %></td>
 
-        <tr>
-          <td>4</td>
-          <td>874</td>
-          <td>epoch</td>
-          <td><%= link_to 'https://github.com/ceospfx/epoch',
-                          url_for('https://github.com/ceospfx/epoch'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>604</td>
-          <td>gitHub Archive</td>
-          <td><%= link_to 'http://www.githubarchive.org/',
-                          url_for('http://www.githubarchive.org'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td>502</td>
-          <td>gitHub Archive</td>
-          <td><%= link_to 'http://www.githubarchive.org/',
-                          url_for('http://www.githubarchive.org'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-
-        <tr>
-          <td>7</td>
-          <td>874</td>
-          <td>epoch</td>
-          <td><%= link_to 'https://github.com/ceospfx/epoch',
-                          url_for('https://github.com/ceospfx/epoch'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>8</td>
-          <td>604</td>
-          <td>gitHub Archive</td>
-          <td><%= link_to 'http://www.githubarchive.org/',
-                          url_for('http://www.githubarchive.org'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>9</td>
-          <td>502</td>
-          <td>gitHub Archive</td>
-          <td><%= link_to 'http://www.githubarchive.org/',
-                          url_for('http://www.githubarchive.org'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-
-        <tr>
-          <td>10</td>
-          <td>874</td>
-          <td>epoch</td>
-          <td><%= link_to 'https://github.com/ceospfx/epoch',
-                          url_for('https://github.com/ceospfx/epoch'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>11</td>
-          <td>604</td>
-          <td>gitHub Archive</td>
-          <td><%= link_to 'http://www.githubarchive.org/',
-                          url_for('http://www.githubarchive.org'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>12</td>
-          <td>502</td>
-          <td>gitHub Archive</td>
-          <td><%= link_to 'http://www.githubarchive.org/',
-                          url_for('http://www.githubarchive.org'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>13</td>
-          <td>874</td>
-          <td>epoch</td>
-          <td><%= link_to 'https://github.com/ceospfx/epoch',
-                          url_for('https://github.com/ceospfx/epoch'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>14</td>
-          <td>604</td>
-          <td>gitHub Archive</td>
-          <td><%= link_to 'http://www.githubarchive.org/',
-                          url_for('http://www.githubarchive.org'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>15</td>
-          <td>502</td>
-          <td>gitHub Archive</td>
-          <td><%= link_to 'http://www.githubarchive.org/',
-                          url_for('http://www.githubarchive.org'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>16</td>
-          <td>874</td>
-          <td>epoch</td>
-          <td><%= link_to 'https://github.com/ceospfx/epoch',
-                          url_for('https://github.com/ceospfx/epoch'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>17</td>
-          <td>604</td>
-          <td>gitHub Archive</td>
-          <td><%= link_to 'http://www.githubarchive.org/',
-                          url_for('http://www.githubarchive.org'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>18</td>
-          <td>502</td>
-          <td>gitHub Archive</td>
-          <td><%= link_to 'http://www.githubarchive.org/',
-                          url_for('http://www.githubarchive.org'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>19</td>
-          <td>874</td>
-          <td>epoch</td>
-          <td><%= link_to 'https://github.com/ceospfx/epoch',
-                          url_for('https://github.com/ceospfx/epoch'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>20</td>
-          <td>604</td>
-          <td>gitHub Archive</td>
-          <td><%= link_to 'http://www.githubarchive.org/',
-                          url_for('http://www.githubarchive.org'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>21</td>
-          <td>502</td>
-          <td>gitHub Archive</td>
-          <td><%= link_to 'http://www.githubarchive.org/',
-                          url_for('http://www.githubarchive.org'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>22</td>
-          <td>874</td>
-          <td>epoch</td>
-          <td><%= link_to 'https://github.com/ceospfx/epoch',
-                          url_for('https://github.com/ceospfx/epoch'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>23</td>
-          <td>604</td>
-          <td>gitHub Archive</td>
-          <td><%= link_to 'http://www.githubarchive.org/',
-                          url_for('http://www.githubarchive.org'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>24</td>
-          <td>502</td>
-          <td>gitHub Archive</td>
-          <td><%= link_to 'http://www.githubarchive.org/',
-                          url_for('http://www.githubarchive.org'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-        <tr>
-          <td>25</td>
-          <td>874</td>
-          <td>epoch</td>
-          <td><%= link_to 'https://github.com/ceospfx/epoch',
-                          url_for('https://github.com/ceospfx/epoch'),
-                          target: '_blank' %>
-          </td>
-        </tr>
-
+            <% url = dat[:url] %>
+            <td class="span4">
+              <%= link_to url, url_for(url), target: '_blank' %>
+            </td>
+          </tr>
+          <% count += 1%>
+        <% end %>
       </tbody>
     </table>
-
   </div>
+
 </div>

@@ -265,3 +265,69 @@ def report_top_repos( top=10, start_hr=0, end_hr=23, date='2014-01-01', event='P
   # return items
   items
 end
+
+def hours_list()
+  [
+    '12:00 am', '1:00 am','2:00 am','3:00 am','4:00 am','5:00 am',
+    '6:00 am','7:00 am','8:00 am','9:00 am','10:00 am','11:00 am',
+    '12:00 pm','1:00 pm','2:00 pm','3:00 pm','4:00 pm','5:00 pm',
+    '6:00 pm','7:00 pm','8:00 pm','9:00 pm','10:00 pm','11:00 pm'
+  ]
+end
+
+def hour_to_int( hour )
+  val = 0
+  case hour
+    when '1:00 am'
+      val = 1
+    when '2:00 am'
+      val = 2
+    when '3:00 am'
+      val = 3
+    when '4:00 am'
+      val = 4
+    when '5:00 am'
+      val = 5
+    when '6:00 am'
+      val = 6
+    when '7:00 am'
+      val = 7
+    when '8:00 am'
+      val = 8
+    when '9:00 am'
+      val = 9
+    when '10:00 am'
+      val = 10
+    when '11:00 am'
+      val = 11
+    when '12:00 pm'
+      val = 12
+    when '1:00 pm'
+      val = 13
+    when '2:00 pm'
+      val = 14
+    when '3:00 pm'
+      val = 15
+    when '4:00 pm'
+      val = 16
+    when '5:00 pm'
+      val = 17
+    when '6:00 pm'
+      val = 18
+    when '7:00 pm'
+      val = 19
+    when '8:00 pm'
+      val = 20
+    when '9:00 pm'
+      val = 21
+    when '10:00 pm'
+      val = 22
+    when '11:00 pm'
+      val = 23
+    when '12:00am'
+      val = 24
+    else
+      val
+  end
+  val
+end

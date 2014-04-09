@@ -1,3 +1,32 @@
-<div>
-  TIME RANGE PARTIAL
+<div class="timerange_grp">
+  <label for="date">Date</label>
+  <select name="date_menu" id="date">
+    <option value="0" selected="1">2014-01-01</option>
+    <option value="1">2014-01-01</option>
+  </select>
 </div>
+
+<div class="timerange_grp">
+  <label for="start">Start Time</label>
+  <select name="start_menu" id="start">
+    <option value="0">12:00 pm</option>
+    <% count = 0 %>
+    <% @hours.each do | h | %>
+      <option value="<% count %>"><%= h %></option>
+      <% count += 1 %>
+    <% end %>
+  </select>
+</div>
+
+<div class="timerange_grp">
+  <label for="end">End Time</label>
+  <select name="end_menu" id="end">
+    <option value="0">1:00 pm</option>
+    <% count = 1 %>
+    <% @hours.each do | h | %>
+      <option value='<% count %>'><%= h %></option>
+      <% count += 1 %>
+    <% end %>
+  </select>
+</div>
+

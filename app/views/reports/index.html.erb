@@ -1,7 +1,15 @@
-<div>
-  <%= render "layouts/time_range" %>
+<div class="form_content graph_content">
+  <div class="form_title">Top 10 Repositories</div>
 
-  <div>
-    Reports (Graph) Page
+  <form id="graph_form">
+    <div id="timerange" class="clearfix" >
+      <%= render "layouts/time_range" %>
+      <button type="submit" class="bttn" id="graph-btn">Update</button>
+    </div>
+  </form>
+
+  <div id="graph_detail">
+    graph goes here
   </div>
+
 </div>
