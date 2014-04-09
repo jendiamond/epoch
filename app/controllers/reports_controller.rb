@@ -11,16 +11,19 @@ class ReportsController < ApplicationController
     @hours  = hours_list
   end
 
-  # def create
-  #   # there should be a better way to do this
-  #   # so I don't have to rebuild the entire page
-  #
-  #   puts "\n\nGot Params", params
-  #
-  #   # get date and hours, shift hours by 1
-  #
-  #   @data = report_top_repos(10,1,0)
-  #   redirect_to links_path
-  # end
+  def redraw
+    # shift time by one by one to account of 0 index of archive data
+    # not all event types have been tested...
+    event      = params[:event].strip
+    date       = params[:date].strip
+    start_time = params[:start_time].to_i - 1
+    end_time   = params[:end_time].to_i - 1
+    @data = report_top_repos( 10, start_time, end_time, date, event )
+
+    puts "Getting report for: ", start_time, end_time, date, event
+
+    # For AJAX request
+    render json: @data
+  end
 
 end
